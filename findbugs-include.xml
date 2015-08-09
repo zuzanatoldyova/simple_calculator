@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+  <Match>
+    <Package name="~cz\.muni\.fi\.pb162.*"/>
+    <Bug code="BC, ES, Eq, HE, IC, Nm, UuF"/>
+  </Match>
+</FindBugsFilter>
