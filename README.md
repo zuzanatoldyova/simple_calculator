@@ -17,7 +17,7 @@ The maximum number of points for this assignment is **70**.
 
 In cases **when provided tests do not pass** with submited solution you can be granted no more than **40 points** (this means that you can be granted **0 points** as well)!
 
-###Preconditions
+### Preconditions
 To succesfully implement this assignemnt you need to know the following
 
 1. What is the difference between class and object and how to work with both.
