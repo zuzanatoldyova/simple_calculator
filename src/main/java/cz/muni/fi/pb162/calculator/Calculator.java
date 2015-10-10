@@ -7,16 +7,44 @@ package cz.muni.fi.pb162.calculator;
  */
 public interface Calculator {
 
-    /* message constants */
+    /**
+     * Error constant for computation error
+     */
     String COMPUTATION_ERROR_MSG = "COMPUTATION ERROR";
+
+    /**
+     * Error constant for unknown operation
+     */
     String UNKNOWN_OPERATION_ERROR_MSG = "UNKNOWN OPERATION";
+
+    /**
+     * Error constant for wrong argument
+     */
     String WRONG_ARGUMENTS_ERROR_MSG = "WRONG ARGUMENTS";
 
-    /* command constants */
+    /**
+     * Command constant for {@link #sum(double, double)}
+     */
     String SUM_CMD = "+";
+
+    /**
+     * Command constant for {@link #sub(double, double)}
+     */
     String SUB_CMD = "-";
+
+    /**
+     * Command constant for {@link #mul(double, double)}
+     */
     String MUL_CMD = "*";
+
+    /**
+     * Command constant for {@link #div(double, double)}
+     */
     String DIV_CMD = "/";
+
+    /**
+     * Command constant for {@link #fac(int)}
+     */
     String FAC_CMD = "!";
 
     /**

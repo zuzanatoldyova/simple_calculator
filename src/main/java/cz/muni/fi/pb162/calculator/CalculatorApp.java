@@ -6,11 +6,14 @@ import cz.muni.fi.pb162.calculator.impl.AdvancedCalculator;
 import java.util.Scanner;
 
 public class CalculatorApp {
+
+    /**
+     * Command constant for exiting the program
+     */
     public static final String EXIT_CMD = "exit";
 
     /**
      * Main program loop.
-     *
      * DO NOT MODIFY (or do, but if you break something, it will be on you :)
      *
      * @param args will be ignored

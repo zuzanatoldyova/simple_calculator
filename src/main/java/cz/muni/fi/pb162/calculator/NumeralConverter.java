@@ -10,11 +10,19 @@ package cz.muni.fi.pb162.calculator;
  * @author jcechace
  */
 public interface NumeralConverter {
-    /* digit characters for numeral base 2-16 */
+    /**
+     *  Digit characters for numeral base 2-16
+     */
     String DIGITS = "0123456789ABCDEF";
 
-    /* command constants */
+    /**
+     * Command constant for {@link #toDec(int, String)}
+     */
     String TO_DEC_CMD = ">dec";
+
+    /**
+     * Dommand constant for {@link #fromDec(int, int)}
+     */
     String FROM_DEC_CMD = "dec>";
 
     /**
