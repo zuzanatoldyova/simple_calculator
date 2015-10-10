@@ -5,6 +5,11 @@ import cz.muni.fi.pb162.calculator.impl.AdvancedCalculator;
 
 import java.util.Scanner;
 
+/**
+ * Class representing calculator
+ *
+ * @author jcechace
+ */
 public class CalculatorApp {
 
     /**
