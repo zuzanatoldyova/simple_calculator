@@ -3,7 +3,7 @@ Homework assignment no. 1, Calculator
 
 **Publication date:** 4. week of the semester 
 
-**Submission deadline:** 7. week of the semester
+**Submission deadline:** 7. week of the semester (Friday, November 6)
 
 General information
 -------------------
