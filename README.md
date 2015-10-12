@@ -37,6 +37,26 @@ The structure of project provided as a base for your implementation should meet 
 ### Names in this document
 Unless fully classified name is provided, all class names are relative to  package ```cz.muni.fi.pb162.hw01``` or ```cz.muni.fi.pb162.hw0.impl``` for classes impelemnted as part of your solution.
 
+### Compiling the project
+The project can be compiled and packaged in the same way you already know 
+
+```bash
+$ mvn clean compile
+```
+
+The only differen is, that unlike with seminar project, this time checks for missing documentation and style violation will produce an error. 
+You can temporarily disable this behavior whnen running this command. 
+
+```bash
+$ mvn clean compile -Dcheckstyle.fail=false
+```
+
+You can consult your seminar teacher to help you set the ```checkstyle.fail``` property in your IDE (or just google it). 
+
+
+### Submitting the assignment
+The procedure to submit your solution may differ based on your seminar group. However generally it should be ok to submit ```target/hw01-calculator-1.0-SNAPSHOT-sources.jar``` to the homework vault.
+
 Step 1: Implement Result interface
 ---------------------------
 Create an implementation of ```cz.muni.fi.pb162.hw01.Result``` named ```CalculationResult```. This class represents a result of operation performed on our calculator and can hold two different values:
