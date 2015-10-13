@@ -117,7 +117,7 @@ Create new interface named ```ConvertingCalculator``` which will combine the API
 
 Step 4: Implement ConvertingCalculator interface
 ----------------------------------------
-Create an implementation of ```cz.muni.fi.pb162.hw01.impl.ConvertingCalculator``` named ```AdvancedCalculator```. This class represents a calculator with the same operations as ```BasicCalculator```. You are required to avoid unnecessary code duplicities.
+Create an implementation of ```cz.muni.fi.pb162.calculator.impl.ConvertingCalculator``` named ```AdvancedCalculator```. This class represents a calculator with the same operations as ```BasicCalculator```. You are required to avoid unnecessary code duplicities.
 
 
 ### Numeral system conversions
@@ -146,7 +146,7 @@ The purpose of these methods should be clean from their javadoc, there is few ot
 2. You are required to implement these algorithms yourself.
   - This means that the use of any part of java language or library which allows the conversion is not allowed.
 
-Interface ```cz.muni.fi.pb162.hw01.NumeralConverter``` defines constant ```DIGITS``` which is a string of all digit characters used by numeral systems with bases up to 16. Even though you are not required to use this constant, you might find it useful.
+Interface ```cz.muni.fi.pb162.calculator.NumeralConverter``` defines constant ```DIGITS``` which is a string of all digit characters used by numeral systems with bases up to 16. Even though you are not required to use this constant, you might find it useful.
 
 ### Evaluate operations from textual input
 Also  ```AdvancedCalulator``` should allow the evaluation of operations by calling the ```eval(String input);``` method. However do not forget that this class defines few methods which are not present in ```BasicCalculator```. Once again, you should try to avoid code repetition.
