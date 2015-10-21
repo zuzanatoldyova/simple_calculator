@@ -1,12 +1,33 @@
 package cz.muni.fi.pb162.calculator.impl;
 
 import cz.muni.fi.pb162.calculator.Calculator;
+import cz.muni.fi.pb162.calculator.Result;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
  * @author jcechace
  */
 public class BasicCalculatorTest extends CalculatorTestBase {
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() throws Exception {
+    }
+
+    @After
+    public void tearDown() throws Exception {
+    }
 
     @Override
     protected Calculator getCalc() {
@@ -51,5 +72,52 @@ public class BasicCalculatorTest extends CalculatorTestBase {
     @Test
     public void subtraction() {
         assertNumericResult("4-2", 2, getCalc().sub(4, 2));
+    }
+
+    /**
+     * Test of eval method, of class BasicCalculator.
+     */
+    @Test
+    public void testEval() {
+        System.out.println("eval");
+        String input = "";
+        BasicCalculator instance = new BasicCalculator();
+        Result expResult = null;
+        Result result = instance.eval(input);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of sum method, of class BasicCalculator.
+     */
+    @Test
+    public void testSum() {
+        System.out.println("sum");
+        double x = 0.0;
+        double y = 0.0;
+        BasicCalculator instance = new BasicCalculator();
+        Result expResult = null;
+        Result result = instance.sum(x, y);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of sub method, of class BasicCalculator.
+     */
+    @Test
+    public void testSub() {
+        System.out.println("sub");
+        double x = 0.0;
+        double y = 0.0;
+        BasicCalculator instance = new BasicCalculator();
+        Result expResult = null;
+        Result result = instance.sub(x, y);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 }
