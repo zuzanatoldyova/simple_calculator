@@ -95,7 +95,7 @@ As demonstrated by example bellow. The method expects a single String argument (
 
 ```java
 calc.eval("+ 1 2") // returns result containing 3
-calc.eval("/ 1 2") // returns result containing 2
+calc.eval("/ 1 2") // returns result containing 0.5
 calc.eval("! 4")  // returns result containing 24
 ```
 Intefaces ```cz.muni.fi.pb162.calculator.Calculator``` defines constans for each required operator.

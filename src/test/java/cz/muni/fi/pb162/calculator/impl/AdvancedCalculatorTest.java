@@ -14,8 +14,8 @@ public class AdvancedCalculatorTest extends BasicCalculatorTest {
 
     @Test
     public void numeralSystemsUpToHexSupported() {
-        assertError("Base < 1 should not be supported", getCalc().fromDec(1, 1));
-        assertError("Base < 1 should not be supported", getCalc().toDec(1, "1"));
+        assertError("Base <= 1 should not be supported", getCalc().fromDec(1, 1));
+        assertError("Base <= 1 should not be supported", getCalc().toDec(1, "1"));
 
     }
 

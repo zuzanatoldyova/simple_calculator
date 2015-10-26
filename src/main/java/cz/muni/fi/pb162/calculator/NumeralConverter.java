@@ -27,6 +27,9 @@ public interface NumeralConverter {
 
     /**
      * Convert a number in arbitrary numeral system (up to base 16) to decimal
+     *
+     * Supported bases 2-16
+     *
      * @param base base of source numeral system (e.g. 2 for binary)
      * @param number number in source numeral system
      * @return result with numeric value set
@@ -35,6 +38,9 @@ public interface NumeralConverter {
 
     /**
      * Convert a number from decimal system to any other numeral system (up to base 16)
+     *
+     * Supported bases 2-16
+     *
      * @param base base of target numeral system (e.g. 2 for binary)
      * @param number number in decimal numeral system
      * @return result with alphanumeric value set
