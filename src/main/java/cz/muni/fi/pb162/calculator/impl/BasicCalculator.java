@@ -9,28 +9,40 @@ import cz.muni.fi.pb162.calculator.Result;
  */
 public class BasicCalculator implements Calculator {
 
+    @Override
     public Result eval(String input) {
         Result result;
-        char a = input.charAt(1);
-        char b = input.charAt(2);
-        int doubleA = (int) a;
-        int doubleB = (int) b;
-        switch (String.valueOf(input.charAt(0))) {
-            case "+":
-                result = new CalculationResult(doubleA + doubleB);
-                break;
-            case "-":
-                result = new CalculationResult(doubleA - doubleB);
-                break;
-            case "*":
-                result = new CalculationResult(doubleA * doubleB);
-                break;
-            case "/":
-                result = new CalculationResult(doubleA / doubleB);
-                break;
-            case "!":
-                fac(doubleA);
+        String[] split = input.split("\\s+");
+        if (split.length < 2) {
+            return result = new CalculationResult(UNKNOWN_OPERATION_ERROR_MSG);
+        }        
+        String a = split[1];
+        double doubleA = Double.parseDouble(a);
+        if (split.length == 3) {
+            String b = split[2];
+            double doubleB = Double.parseDouble(b);
+            switch (String.valueOf(split[0])) {
+                case SUM_CMD:
+                    return sum(doubleA, doubleB);
+                case SUB_CMD:
+                    return sub(doubleA, doubleB);
+                case MUL_CMD:
+                    return mul(doubleA, doubleB);
+                case DIV_CMD:
+                    return div(doubleA, doubleB);
+                default:
+                    return result = new CalculationResult(UNKNOWN_OPERATION_ERROR_MSG);
+
+            }
         }
+        switch (String.valueOf(split[0])) {
+
+            case FAC_CMD:
+                return fac((int) doubleA);
+            default:
+                return result = new CalculationResult(UNKNOWN_OPERATION_ERROR_MSG);
+        }
+
     }
 
     @Override
@@ -53,17 +65,25 @@ public class BasicCalculator implements Calculator {
 
     @Override
     public Result div(double x, double y) {
-        Result result = new CalculationResult(x / y);
-        return result;
+        Result result;
+        if (y == 0) {
+            return result = new CalculationResult(COMPUTATION_ERROR_MSG);
+        }
+        return result = new CalculationResult(x / y);
     }
 
     @Override
     public Result fac(int x) {
-        double a;
-        if (x != 0) {
-            a = x * fac(x - 1).getNumericValue();
+        Result result;
+        if (x < 0) {
+        return result = new CalculationResult(COMPUTATION_ERROR_MSG);
+        }       
+        double a = 1;
+        for (int i = x; i > 0; --i) {
+             a *= i;
+           
         }
-        Result result = new CalculationResult(a);
-        return result;
+        return result = new CalculationResult(a);
+        
     }
 }

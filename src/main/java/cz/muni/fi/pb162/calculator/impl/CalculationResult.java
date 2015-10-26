@@ -10,31 +10,51 @@ public class CalculationResult implements Result {
 
     private double numResult;
     private String strResult;
-    
-    CalculationResult(double numResult){
-    this.numResult = numResult;
-    }
-    
-    CalculationResult(double numResult, String strResult){
-    this.strResult = strResult;
+
+    CalculationResult(double numResult) {
+        this.numResult = numResult;
     }
 
+    CalculationResult(String strResult) {
+        this.strResult = strResult;
+        this.numResult = Double.NaN;
+    }
+
+    @Override
     public boolean isSuccess() {
-        if (numResult != 0) {
+        if (strResult != null) {
+            if (strResult.equals("COMPUTATION ERROR") || strResult.equals("UNKNOWN OPERATION")
+                    || strResult.equals("WRONG ARGUMENTS")) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isAlphanumeric() {
+        if (strResult != null) {
             return true;
         }
         return false;
     }
-    
-    public boolean isAlphanumeric(){
-    if (isSuccess() && strResult != null)
+
+    @Override
+    public boolean isNumeric() {
+        if (Double.isNaN(numResult)) {
+            return false;
+        }
         return true;
-    return false;
     }
-    
-    public boolean isNumeric();
-    
-    public double getNumericValue();
-    
-    public String getAlphanumericValue();
+
+    @Override
+    public double getNumericValue() {
+        return numResult;
+    }
+
+    @Override
+    public String getAlphanumericValue() {
+        return strResult;
+    }
+
 }
