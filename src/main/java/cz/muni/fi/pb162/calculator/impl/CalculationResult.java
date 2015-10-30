@@ -8,7 +8,7 @@ import cz.muni.fi.pb162.calculator.Result;
  */
 public class CalculationResult implements Result {
 
-    private double numResult;
+    private final double numResult;
     private String strResult;
 
     CalculationResult(double numResult) {
