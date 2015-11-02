@@ -1,6 +1,7 @@
 package cz.muni.fi.pb162.calculator.impl;
 
 import cz.muni.fi.pb162.calculator.Result;
+import cz.muni.fi.pb162.calculator.Calculator;
 
 /**
  *
@@ -22,29 +23,22 @@ public class CalculationResult implements Result {
 
     @Override
     public boolean isSuccess() {
-        if (strResult != null) {
-            if (strResult.equals("COMPUTATION ERROR") || strResult.equals("UNKNOWN OPERATION")
-                    || strResult.equals("WRONG ARGUMENTS")) {
-                return false;
-            }
+        if ((strResult != null) && (strResult.equals(Calculator.COMPUTATION_ERROR_MSG)
+                || strResult.equals(Calculator.UNKNOWN_OPERATION_ERROR_MSG)
+                || strResult.equals(Calculator.WRONG_ARGUMENTS_ERROR_MSG))) {
+            return false;
         }
         return true;
     }
 
     @Override
     public boolean isAlphanumeric() {
-        if (strResult != null) {
-            return true;
-        }
-        return false;
+        return strResult != null;
     }
 
     @Override
     public boolean isNumeric() {
-        if (Double.isNaN(numResult)) {
-            return false;
-        }
-        return true;
+        return !Double.isNaN(numResult);
     }
 
     @Override

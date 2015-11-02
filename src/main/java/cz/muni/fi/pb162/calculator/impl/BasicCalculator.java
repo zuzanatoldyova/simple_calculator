@@ -2,6 +2,7 @@ package cz.muni.fi.pb162.calculator.impl;
 
 import cz.muni.fi.pb162.calculator.Calculator;
 import cz.muni.fi.pb162.calculator.Result;
+import java.util.Arrays;
 
 /**
  *
@@ -11,17 +12,24 @@ public class BasicCalculator implements Calculator {
 
     @Override
     public Result eval(String input) {
-        Result result;
-        String[] split = input.split("\\s+");
-        if (split.length < 2) {
-            return result = new CalculationResult(UNKNOWN_OPERATION_ERROR_MSG);
-        }        
-        String a = split[1];
-        double doubleA = Double.parseDouble(a);
+        String[] split = input.trim().split("\\s+");
+        String[] operators = {SUM_CMD, SUB_CMD, MUL_CMD, DIV_CMD, FAC_CMD};
+        if (split.length > 0 && !Arrays.asList(operators).contains(split[0])) {
+            return new CalculationResult(UNKNOWN_OPERATION_ERROR_MSG);
+        }
+        if (split.length == 2) {
+            double doubleA = Double.parseDouble(split[1]);
+            switch (split[0]) {
+                case FAC_CMD:
+                    return fac((int) doubleA);
+                default:
+                    return new CalculationResult(WRONG_ARGUMENTS_ERROR_MSG);
+            }
+        }
         if (split.length == 3) {
-            String b = split[2];
-            double doubleB = Double.parseDouble(b);
-            switch (String.valueOf(split[0])) {
+            double doubleA = Double.parseDouble(split[1]);
+            double doubleB = Double.parseDouble(split[2]);
+            switch (split[0]) {
                 case SUM_CMD:
                     return sum(doubleA, doubleB);
                 case SUB_CMD:
@@ -31,59 +39,44 @@ public class BasicCalculator implements Calculator {
                 case DIV_CMD:
                     return div(doubleA, doubleB);
                 default:
-                    return result = new CalculationResult(UNKNOWN_OPERATION_ERROR_MSG);
-
+                    return new CalculationResult(WRONG_ARGUMENTS_ERROR_MSG);
             }
         }
-        switch (String.valueOf(split[0])) {
-
-            case FAC_CMD:
-                return fac((int) doubleA);
-            default:
-                return result = new CalculationResult(UNKNOWN_OPERATION_ERROR_MSG);
-        }
-
+        return new CalculationResult(WRONG_ARGUMENTS_ERROR_MSG);
     }
 
     @Override
     public Result sum(double x, double y) {
-        Result result = new CalculationResult(x + y);
-        return result;
+        return new CalculationResult(x + y);
     }
 
     @Override
     public Result sub(double x, double y) {
-        Result result = new CalculationResult(x - y);
-        return result;
+        return new CalculationResult(x - y);
     }
 
     @Override
     public Result mul(double x, double y) {
-        Result result = new CalculationResult(x * y);
-        return result;
+        return new CalculationResult(x * y);
     }
 
     @Override
     public Result div(double x, double y) {
-        Result result;
-        if (y == 0) {
-            return result = new CalculationResult(COMPUTATION_ERROR_MSG);
+        if (y == 0){
+            return new CalculationResult(COMPUTATION_ERROR_MSG);
         }
-        return result = new CalculationResult(x / y);
+        return  new CalculationResult(x / y);
     }
 
     @Override
     public Result fac(int x) {
-        Result result;
         if (x < 0) {
-        return result = new CalculationResult(COMPUTATION_ERROR_MSG);
-        }       
+            return  new CalculationResult(COMPUTATION_ERROR_MSG);
+        }
         double a = 1;
         for (int i = x; i > 0; --i) {
-             a *= i;
-           
+            a *= i;
         }
-        return result = new CalculationResult(a);
-        
+        return  new CalculationResult(a);
     }
 }

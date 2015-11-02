@@ -1,6 +1,7 @@
 package cz.muni.fi.pb162.calculator.impl;
 
 import cz.muni.fi.pb162.calculator.Result;
+import java.util.Arrays;
 
 /**
  *
@@ -10,61 +11,54 @@ public class AdvancedCalculator extends BasicCalculator implements ConvertingCal
 
     @Override
     public Result toDec(int base, String number) {
-        Result result;
         double a = 0;
         int length = number.length();
         if (length == 0) {
-            return result = new CalculationResult(WRONG_ARGUMENTS_ERROR_MSG);
+            return new CalculationResult(WRONG_ARGUMENTS_ERROR_MSG);
         }
         if (base < 2 || base > 16) {
-            return result = new CalculationResult(COMPUTATION_ERROR_MSG);
+            return new CalculationResult(COMPUTATION_ERROR_MSG);
         }
-
         for (int i = 0; i < length; i++) {
             if (DIGITS.indexOf(number.charAt(i)) >= base || DIGITS.indexOf(number.charAt(i)) == -1) {
-                return result = new CalculationResult(COMPUTATION_ERROR_MSG);
+                return new CalculationResult(COMPUTATION_ERROR_MSG);
             }
             a += DIGITS.indexOf(number.charAt(i)) * Math.pow(base, (length - 1 - i));
         }
-        return result = new CalculationResult(a);
+        return new CalculationResult(a);
     }
 
     @Override
     public Result fromDec(int base, int number) {
-        Result result;
         if (base < 2 || base > 16) {
-            return result = new CalculationResult(COMPUTATION_ERROR_MSG);
+            return new CalculationResult(COMPUTATION_ERROR_MSG);
         }
-        String computation = "";
+        StringBuilder sb = new StringBuilder();
 
         for (int i = number; i > 0; i = i / base) {
             int a = i % base;
-            computation = DIGITS.substring(a, a + 1) + computation;
+            sb.append(DIGITS.substring(a, a + 1));
         }
-        return result = new CalculationResult(computation);
-    }   
+        return new CalculationResult(sb.reverse().toString());
+    }
 
     @Override
     public Result eval(String input) {
-        Result result;
-        String[] split = input.split("\\s+");
-        if (split.length < 2) {
-            return result = new CalculationResult(UNKNOWN_OPERATION_ERROR_MSG);
-        }  
-        String a = split[1];
-        double doubleA = Double.parseDouble(a);
+        String[] split = input.trim().split("\\s+");
+        String[] operators = {TO_DEC_CMD, FROM_DEC_CMD};
+        if (split.length > 0 && !Arrays.asList(operators).contains(split[0])) {
+            return super.eval(input);
+        }
+        int intA = Integer.parseInt(split[1]);
         if (split.length == 3) {
             String b = split[2];
-            double doubleB = Double.parseDouble(b);
-            switch (String.valueOf(split[0])) {
-                case TO_DEC_CMD:
-                    return toDec((int) doubleA, b);
-                case FROM_DEC_CMD:
-                    return fromDec((int) doubleA, (int) doubleB);
-                default:
-                    return super.eval(input);
+            if (split[0].equals(TO_DEC_CMD)) {
+                return toDec(intA, b);
+            }
+            if (split[0].equals(FROM_DEC_CMD)) {
+                return fromDec(intA, Integer.parseInt(b));
             }
         }
-        return super.eval(input);
+        return new CalculationResult(WRONG_ARGUMENTS_ERROR_MSG);
     }
 }
